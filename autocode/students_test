@@ -20,13 +20,16 @@ func init() {
 }
 
 // WRITE YOUR CODE BELOW
+const ErrD = "Expected: %d, got %d"
+const ErrT = "Expected: %t, got %t"
+const ErrS = "Expected: %s, got %s"
 
 func TestLenOk(t *testing.T){
 	var p People
 	var expect int = 0
 	n := p.Len()
 	if n!= expect{
-		t.Errorf("Expected: %d, got %d", expect, n)
+		t.Errorf(ErrD, expect, n)
 	}
 }
 
@@ -44,7 +47,7 @@ func TestLessOk(t *testing.T){
 	for i := 0; i < len(p)-1; i++ {
 		n := p.Less(i, i+1)
 		if n != expect {
-			t.Errorf("Expected: %t, got %t", expect, n)
+			t.Errorf(ErrT, expect, n)
 		}
 	}
 }
@@ -60,7 +63,7 @@ func TestSwapOk(t *testing.T){
 	expect = append(expect,p1)
 	p.Swap(0,1)
 	if p[0] != expect[0] {
-		t.Errorf("Expected: %t, got %t", true, false)
+		t.Errorf(ErrT, true, false)
 	}
 }
 
@@ -85,7 +88,7 @@ func TestNewOk(t *testing.T){
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++{
 			if  matrix1[i][j] != mat[i][j]{
-				t.Errorf("Expected: %d, got %d", mat[i][j], matrix1[i][j])
+				t.Errorf(ErrD, mat[i][j], matrix1[i][j])
 			}
 		}
 	}
@@ -96,13 +99,13 @@ func TestNewOk(t *testing.T){
 		t.Errorf("Expected: %s, got %p", expect1, m3)
 	}
 	if er1 != expect1 {
-		t.Errorf("Expected: %s, got %s", expect1, er1)
+		t.Errorf(ErrS, expect1, er1)
 	}
 	if er2 == expect1 {
-		t.Errorf("Expected: %s, got %s", expect2, er2)
+		t.Errorf(ErrS, expect2, er2)
 	}
 	if er3 == expect1 {
-		t.Errorf("Expected: %s, got %s", expect1, er3)
+		t.Errorf(ErrS, expect1, er3)
 	}
 }
 
@@ -116,7 +119,7 @@ func TestRowsOk(t *testing.T) {
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++{
 			if  matrix1[i][j] != mat[i][j]{
-				t.Errorf("Expected: %d, got %d", mat[i][j], matrix1[i][j])
+				t.Errorf(ErrD, mat[i][j], matrix1[i][j])
 			}
 		}
 	}
@@ -132,7 +135,7 @@ func TestColsOk(t *testing.T) {
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++{
 			if  matrix1[j][i] != mat[i][j]{
-				t.Errorf("Expected: %d, got %d", mat[i][j], matrix1[j][i])
+				t.Errorf(ErrD, mat[i][j], matrix1[j][i])
 			}
 		}
 	}
@@ -146,10 +149,10 @@ func TestSetOk(t *testing.T){
 	m1,_ := New(str1)
 	b = m1.Set(2,2,2)
 	if b != true {
-		t.Errorf("Expected: %t, got %t", true, b)
+		t.Errorf(ErrT, true, b)
 	}
 	b = m1.Set (-2,1,2)
 	if b != false {
-		t.Errorf("Expected: %t, got %t", false, b)
+		t.Errorf(ErrT, false, b)
 	}
 }
